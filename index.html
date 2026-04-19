@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send Google Review Requests Fast | TreeWebDesign.com</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Step 0: Intro -->
+  <div id="step-0" class="step active">
+    <div class="card">
+      <p class="logo">Tree Web Design</p>
+      <h1 class="intro-headline">Get more Google reviews from every job</h1>
+      <p class="intro-body">Send a review request the moment you finish — pre-written, opens straight in Messages, takes 30 seconds.</p>
+
+      <ul class="intro-checklist">
+        <li>No app to download</li>
+        <li>Works from any phone</li>
+        <li>Free to use</li>
+      </ul>
+
+      <button class="btn-primary" onclick="goTo(1)">Set it up free →</button>
+      <p class="next-hint">Takes about 60 seconds</p>
+    </div>
+  </div>
+
+  <!-- Step 1: Contractor Registration -->
+  <div id="step-1" class="step">
+    <div class="card">
+      <h2 class="step-heading">Let's get you set up</h2>
+      <p class="subtitle">This only happens once.</p>
+
+      <form id="form-step1" name="contractor-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contractor-registration" />
+        <input type="hidden" id="gbp-link" name="gbp-link" />
+        <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+        <div class="field">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" name="first-name" placeholder="e.g. Mike" autocomplete="given-name" required />
+        </div>
+
+        <div class="field">
+          <label for="company-name">Company name</label>
+          <input type="text" id="company-name" name="company-name" placeholder="e.g. Branch Tree Removal" autocomplete="organization" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Your email address</label>
+          <input type="email" id="email" name="email" placeholder="e.g. mike@branchtreeremoval.com" autocomplete="email" required />
+        </div>
+
+        <label class="checkbox-label">
+          <input type="checkbox" name="marketing-opt-in" value="yes" />
+          <span>I'd like to receive occasional tips and resources from Tree Web Design</span>
+        </label>
+
+        <p class="next-hint">Next: find your business on Google</p>
+        <button type="submit" class="btn-primary">Save & Continue →</button>
+      </form>
+
+      <div class="step-indicator">Step 1 of 4</div>
+      <div class="progress-track"><div class="progress-fill" style="width:25%"></div></div>
+    </div>
+  </div>
+
+  <!-- Step 2: Find Business -->
+  <div id="step-2" class="step">
+    <div class="card card--search">
+      <div id="business-search-container"></div>
+      <div id="business-confirm" class="business-confirm hidden"></div>
+
+      <p class="step-heading">Find your business on Google</p>
+      <p class="subtitle">Search and select your business so we can build your review link.</p>
+
+      <p class="next-hint">Next: enter your customer's info</p>
+      <button id="btn-to-step3" class="btn-primary" disabled>Continue →</button>
+      <button class="btn-back" onclick="goTo(1)">← Back</button>
+
+      <div class="step-indicator">Step 2 of 4</div>
+      <div class="progress-track"><div class="progress-fill" style="width:50%"></div></div>
+    </div>
+  </div>
+
+  <!-- Step 3: Recipient Entry -->
+  <div id="step-3" class="step">
+    <div class="card">
+      <p class="step-heading">Who's the message for?</p>
+      <p class="subtitle">Enter your customer's info.</p>
+
+      <div class="field">
+        <label for="customer-name">Customer first name</label>
+        <input type="text" id="customer-name" placeholder="e.g. Sarah" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="customer-phone">Customer phone number</label>
+        <input type="tel" id="customer-phone" placeholder="(555) 000-0000" autocomplete="off" />
+      </div>
+
+      <p class="next-hint">Next: preview your message</p>
+      <button id="btn-to-step4" class="btn-primary">Continue →</button>
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
+
+      <div class="step-indicator">Step 3 of 4</div>
+      <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
+    </div>
+  </div>
+
+  <!-- Step 4: Preview & Send -->
+  <div id="step-4" class="step">
+    <div class="card">
+      <p class="step-heading">Preview & send</p>
+      <p class="subtitle">Tap Send SMS — the message opens pre-filled.</p>
+
+      <div class="preview-box" id="message-preview"></div>
+
+      <a id="sms-link" class="btn-primary btn-send" href="#">Send SMS 📨</a>
+      <p class="cta-nudge">Like this tool? We build websites for tree service companies. <a href="https://treewebdesign.com" target="_blank" rel="noopener">treewebdesign.com</a></p>
+      <p class="homescreen-hint">Add this page to your home screen for quick access after every job.</p>
+      <button class="btn-back" onclick="goTo(3)">← Back</button>
+      <button class="btn-secondary" id="btn-send-another">Send another</button>
+
+      <div class="step-indicator">Step 4 of 4</div>
+      <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Brought to you by <a href="https://treewebdesign.com" target="_blank" rel="noopener">TREEWEBDESIGN.COM</a></p>
+    <p>A Rocinante Marketing Company</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDLYBQPrA9arHZtizo_kjiaVEHPzyKqSc&v=beta&libraries=places&loading=async&callback=initAutocomplete"
+    async
+    defer
+  ></script>
+</body>
+</html>
